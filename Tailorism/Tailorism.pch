@@ -1,0 +1,91 @@
+//
+//  Tailorism.pch
+//  Tailorism
+//
+//  Created by LIZhenNing on 16/5/11.
+//  Copyright © 2016年 LIZhenNing. All rights reserved.
+//
+
+#ifndef Tailorism_pch
+#define Tailorism_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "UIColor+JZOL.h"
+#import "LYUITextField.h"
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
+#import "JSONKit.h"
+#import "AppDelegate.h"
+#import "LYFmdbTool.h"
+#import "MWPhotoBrowser.h"
+#import "MJExtension.h"
+#import "Singleton.h"
+#define SuperColor [UIColor colorWithHex:@"5673b7"]
+
+
+#if DEBUG
+
+#define NSLog(FORMAT, ...  ) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#else
+
+#define NSLog(FORMAT, ...) nil
+
+#endif
+
+
+//判断是否是iphone5
+#define IS_WIDESCREEN                              ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - (double)568 ) < __DBL_EPSILON__ )
+#define IS_IPHONE                                  ( [ [ [ UIDevice currentDevice ] model ] isEqualToString: @"iPhone" ] || [ [ [ UIDevice currentDevice ] model ] isEqualToString: @"iPhone Simulator" ])
+#define IS_IPOD                                    ( [ [ [ UIDevice currentDevice ] model ] isEqualToString: @"iPod touch" ] )
+#define IS_IPHONE_5                                ( IS_IPHONE && IS_WIDESCREEN )
+
+#define IS_WIDE(x)                              ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.width - (double)(x) ) < __DBL_EPSILON__ )
+
+#define IS_IPHONE_6 ( IS_IPHONE && IS_WIDE(375))
+#define IS_IPHONE_6p ( IS_IPHONE && IS_WIDE(414))
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+
+#define LScreenWidth [UIScreen mainScreen].bounds.size.width
+#define LScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
+//#define HTTPUrl @"http://test.api.shliangyi.net/"
+//#define imageHTTPUrl @"http://test.image.shliangyi.net/"
+
+#define imageHTTPUrl @"http://image.shliangyi.net/"
+#define HTTPUrl @"http://api.shliangyi.net/"
+
+
+
+
+#define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录
+#define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表
+#define OrdersAdd [NSString stringWithFormat:@"%@orders/add",HTTPUrl]///添加订单（下单）
+#define memberAdd [NSString stringWithFormat:@"%@member/add",HTTPUrl]///添加客户
+#define appUpload [NSString stringWithFormat:@"%@upload/add",HTTPUrl]///图片上传
+#define fabricList [NSString stringWithFormat:@"%@fabric/list",HTTPUrl]///同步面料
+#define memberUpdateUrl [NSString stringWithFormat:@"%@member/update",HTTPUrl]///客户修改更新
+#define ordersList [NSString stringWithFormat:@"%@orders/list",HTTPUrl]///订单列表
+#define OrdersOrderDetail [NSString stringWithFormat:@"%@productOrders/getOne",HTTPUrl]///订单详情
+#define measureList [NSString stringWithFormat:@"%@measure/list",HTTPUrl]
+#define measureProcess [NSString stringWithFormat:@"%@measure/process",HTTPUrl]
+#define UserList [NSString stringWithFormat:@"%@user/list",HTTPUrl]
+#define measureAssign [NSString stringWithFormat:@"%@measure/assign",HTTPUrl]
+#define settingsList [NSString stringWithFormat:@"%@settings/list",HTTPUrl]
+#define weixinMicropay [NSString stringWithFormat:@"%@weixin/micropay",HTTPUrl]
+#define staffDetails [NSString stringWithFormat:@"%@staff/details",HTTPUrl]
+#define staffWithdrawHistory [NSString stringWithFormat:@"%@staff/withdrawHistory",HTTPUrl]
+#define staffWithdraw [NSString stringWithFormat:@"%@staff/Withdraw",HTTPUrl]
+#define staffOrderList [NSString stringWithFormat:@"%@staff/orderList",HTTPUrl]
+#define rewardHistoryList [NSString stringWithFormat:@"%@rewardHistory/list",HTTPUrl]
+
+
+#endif /* Tailorism_pch */

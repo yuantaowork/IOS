@@ -1,0 +1,48 @@
+
+/* Class = "UITabBarItem"; title = "会员"; ObjectID = "4FA-CP-9Ff"; */
+"4FA-CP-9Ff.title" = "会员";
+
+/* Class = "UIViewController"; title = "订单"; ObjectID = "4nc-KW-YQ7"; */
+"4nc-KW-YQ7.title" = "订单";
+
+/* Class = "UINavigationItem"; title = "订单"; ObjectID = "Blg-P5-6ZJ"; */
+"Blg-P5-6ZJ.title" = "订单";
+
+/* Class = "UINavigationItem"; title = "我"; ObjectID = "EYb-nZ-D1D"; */
+"EYb-nZ-D1D.title" = "我";
+
+/* Class = "UIViewController"; title = "下单"; ObjectID = "Ets-1x-kAA"; */
+"Ets-1x-kAA.title" = "下单";
+
+/* Class = "UINavigationItem"; title = "预约量体"; ObjectID = "Sak-ZX-IGD"; */
+"Sak-ZX-IGD.title" = "预约量体";
+
+/* Class = "UIViewController"; title = "预约量体"; ObjectID = "bXN-0u-9qD"; */
+"bXN-0u-9qD.title" = "预约量体";
+
+/* Class = "UITabBarItem"; title = "下单"; ObjectID = "eFR-6m-dOl"; */
+"eFR-6m-dOl.title" = "下单";
+
+/* Class = "UITabBarItem"; title = "预约量体"; ObjectID = "fHf-rF-LCe"; */
+"fHf-rF-LCe.title" = "预约量体";
+
+/* Class = "UITabBarItem"; title = "订单"; ObjectID = "gJr-gR-cuP"; */
+"gJr-gR-cuP.title" = "订单";
+
+/* Class = "UINavigationItem"; title = "会员"; ObjectID = "hLj-KQ-893"; */
+"hLj-KQ-893.title" = "会员";
+
+/* Class = "UIViewController"; title = "会员"; ObjectID = "qCt-tk-9Q7"; */
+"qCt-tk-9Q7.title" = "会员";
+
+/* Class = "UIViewController"; title = "我"; ObjectID = "skn-5R-bfi"; */
+"skn-5R-bfi.title" = "我";
+
+/* Class = "UINavigationItem"; title = "下单"; ObjectID = "xrR-me-tfx"; */
+"xrR-me-tfx.title" = "下单";
+
+/* Class = "UINavigationController"; title = "下单"; ObjectID = "zW9-rS-qAF"; */
+"zW9-rS-qAF.title" = "下单";
+
+/* Class = "UITabBarItem"; title = "我"; ObjectID = "zZs-Gb-C24"; */
+"zZs-Gb-C24.title" = "我";
