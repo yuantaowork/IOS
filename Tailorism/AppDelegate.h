@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)forceUpVersion;
+
 -(void)getrootViewController;
 - (UIViewController *)getCurrentVC;
 -(void)getHttpMeberList;

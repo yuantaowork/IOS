@@ -483,7 +483,6 @@
 }
 
 
-#warning error 先了解 MWPhotoBrowser 再看逻辑
 -(void)imgashowView:(int)Num
 {
     

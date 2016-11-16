@@ -16,16 +16,41 @@
 #import <CoreTelephony/CTCall.h>
 
 
-#define PGY_APPKEY @"c8b9fff0b387d6f2ad4f49e76257672a"
-@interface AppDelegate ()
+#define PGY_APPKEY @"0f6752c52f576f4b714ce4526e11e71b"
+@interface AppDelegate () <UIAlertViewDelegate>
+
+@property (nonatomic , strong)NSDictionary *updateDic;
 
 @end
 
 @implementation AppDelegate
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSURL *url = [NSURL URLWithString:[self.updateDic objectForKey:@"appUrl"]];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)updateMethodWithDictionary:(NSDictionary *)dic {
+    
+    self.updateDic = dic;
+    [self forceUpVersion];
+}
+
+- (void)forceUpVersion {
+    double localVersion =[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] doubleValue];
+    if (localVersion < (double)[[self.updateDic objectForKey:@"versionCode"] doubleValue]) {
+        
+        UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:[self.updateDic objectForKey:@"releaseNote"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [self.window addSubview:alertV];
+        [alertV show];
+        return;
+    }
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     
 
     [UMessage startWithAppkey:@"57874d6667e58eec8d000658" launchOptions:launchOptions];
@@ -42,7 +67,11 @@
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
     [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
-    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+//    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+//    `强制更新
+    [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethodWithDictionary:)];
+    
+   
     [[PgyManager sharedPgyManager] setThemeColor:[UIColor colorWithHex:@"37C5A1"]];
     [[PgyManager sharedPgyManager] setShakingThreshold:4.0];
     
@@ -280,5 +309,9 @@
 //        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
     }];
 }
+
+
+
+
 
 @end

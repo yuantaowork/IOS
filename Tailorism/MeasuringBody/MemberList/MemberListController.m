@@ -12,8 +12,9 @@
 #import "pinyin.h"
 #import "MJRefresh.h"
 #import "PersonalController.h"
+
 //测试
-@interface MemberListController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface MemberListController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating >
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UITableView *meberListTabel;
@@ -28,10 +29,16 @@
 NSString *const kCellIdentifier = @"MeberListcellID";
 @implementation MemberListController
 
+- (void)forceUpVersion {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate forceUpVersion];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceUpVersion) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     //获取通知中心
     NSNotificationCenter * center =[NSNotificationCenter defaultCenter];
@@ -193,8 +200,7 @@ NSString *const kCellIdentifier = @"MeberListcellID";
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"Error: %@",  error);
-        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
+        [SVProgressHUD showErrorWithStatus:@"请检查您的网络"];
     }];
     
     

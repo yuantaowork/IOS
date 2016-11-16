@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property CGFloat contenty;
 @property NSInteger currentPage;
-@property NSInteger maxPage;
+@property (nonatomic , assign)NSInteger maxPage;
 
 @end
 
@@ -33,6 +33,7 @@
     [super viewDidLoad];
     
     _currentPage = 1;
+    _maxPage = 1;
     _statusTpye = @"0";
     _searchBar.delegate = self;
     [self.searchBar setShowsCancelButton:YES];
@@ -283,7 +284,14 @@
             if (header){[_orderListTabel.mj_header endRefreshing];}else{[_orderListTabel.mj_footer endRefreshing];}
             
             _currentPage =[[[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"page"]intValue];
-            _maxPage =[[[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"pageCount"]intValue];
+            
+            NSString *tempPageCount = [[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"pageCount"];
+            _maxPage = [tempPageCount integerValue];
+            if ([tempPageCount isEqual:@0]) {
+                _maxPage = 1;
+            }
+            
+            
             [SVProgressHUD dismiss];
             
         }if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]])

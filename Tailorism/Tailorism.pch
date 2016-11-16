@@ -24,6 +24,7 @@
 #define SuperColor [UIColor colorWithHex:@"5673b7"]
 
 
+
 #if DEBUG
 
 #define NSLog(FORMAT, ...  ) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
@@ -66,26 +67,30 @@
 
 
 
-#define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录
-#define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表
-#define OrdersAdd [NSString stringWithFormat:@"%@orders/add",HTTPUrl]///添加订单（下单）
-#define memberAdd [NSString stringWithFormat:@"%@member/add",HTTPUrl]///添加客户
-#define appUpload [NSString stringWithFormat:@"%@upload/add",HTTPUrl]///图片上传
-#define fabricList [NSString stringWithFormat:@"%@fabric/list",HTTPUrl]///同步面料
-#define memberUpdateUrl [NSString stringWithFormat:@"%@member/update",HTTPUrl]///客户修改更新
-#define ordersList [NSString stringWithFormat:@"%@orders/list",HTTPUrl]///订单列表
+#define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录  ✅
+#define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表  ✅
+#define OrdersAdd [NSString stringWithFormat:@"%@orders/add",HTTPUrl]///添加订单（下单）    ✅
+#define memberAdd [NSString stringWithFormat:@"%@member/add",HTTPUrl]///添加客户    ✅
+#define appUpload [NSString stringWithFormat:@"%@upload/add",HTTPUrl]///图片上传    ✅
+#define fabricList [NSString stringWithFormat:@"%@fabric/list",HTTPUrl]///同步面料  ✅
+#define memberUpdateUrl [NSString stringWithFormat:@"%@member/update",HTTPUrl]///客户修改更新 ✅
+#define ordersList [NSString stringWithFormat:@"%@orders/list",HTTPUrl]///订单列表  ✅
 #define OrdersOrderDetail [NSString stringWithFormat:@"%@productOrders/getOne",HTTPUrl]///订单详情
-#define measureList [NSString stringWithFormat:@"%@measure/list",HTTPUrl]
+#define measureList [NSString stringWithFormat:@"%@measure/list",HTTPUrl]   //  ✅
 #define measureProcess [NSString stringWithFormat:@"%@measure/process",HTTPUrl]
-#define UserList [NSString stringWithFormat:@"%@user/list",HTTPUrl]
-#define measureAssign [NSString stringWithFormat:@"%@measure/assign",HTTPUrl]
-#define settingsList [NSString stringWithFormat:@"%@settings/list",HTTPUrl]
-#define weixinMicropay [NSString stringWithFormat:@"%@weixin/micropay",HTTPUrl]
-#define staffDetails [NSString stringWithFormat:@"%@staff/details",HTTPUrl]
-#define staffWithdrawHistory [NSString stringWithFormat:@"%@staff/withdrawHistory",HTTPUrl]
-#define staffWithdraw [NSString stringWithFormat:@"%@staff/Withdraw",HTTPUrl]
-#define staffOrderList [NSString stringWithFormat:@"%@staff/orderList",HTTPUrl]
-#define rewardHistoryList [NSString stringWithFormat:@"%@rewardHistory/list",HTTPUrl]
+#define UserList [NSString stringWithFormat:@"%@user/list",HTTPUrl]//   ✅
+#define measureAssign [NSString stringWithFormat:@"%@measure/assign",HTTPUrl]// ✅
+#define settingsList [NSString stringWithFormat:@"%@settings/list",HTTPUrl] // ✅
+#define weixinMicropay [NSString stringWithFormat:@"%@weixin/micropay",HTTPUrl]//   ✅没有去研究后台具体支付过程
+#define staffDetails [NSString stringWithFormat:@"%@staff/details",HTTPUrl]//   ✅
+#define staffWithdrawHistory [NSString stringWithFormat:@"%@staff/withdrawHistory",HTTPUrl] //  ✅这部分只做到查看佣金数据
+//  提现部分没有做
+#define staffWithdraw [NSString stringWithFormat:@"%@staff/Withdraw",HTTPUrl]  //   ✅
+#define staffOrderList [NSString stringWithFormat:@"%@staff/orderList",HTTPUrl]//  ✅ 接口暂时没有用到
+#define rewardHistoryList [NSString stringWithFormat:@"%@rewardHistory/list",HTTPUrl]// ✅
+//`rewardHistoryList（收益详情） / staffWithdraw（佣金） / staffWithdrawHistory（佣金体现等详情）
+//`这三个接口都是个人信息中的，暂时只做到用一个表格展示数据，体现功能还没有实现
+
 
 
 #endif /* Tailorism_pch */
