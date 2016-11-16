@@ -317,7 +317,6 @@
             [imageveiw2 addGestureRecognizer:tapGesture2];
             
             
-#warning error imageNameArry 存放的值和 type 值对应的内容  以及sd_setImage Block 里面的内部逻辑
             for (int i = 0; i<_imageNameArry.count; i++)
             {
                 
