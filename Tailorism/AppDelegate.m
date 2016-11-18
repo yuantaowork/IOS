@@ -40,7 +40,7 @@
     double localVersion =[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] doubleValue];
     if (localVersion < (double)[[self.updateDic objectForKey:@"versionCode"] doubleValue]) {
         
-        UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:[self.updateDic objectForKey:@"releaseNote"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"发现新版本" message:[self.updateDic objectForKey:@"releaseNote"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [self.window addSubview:alertV];
         [alertV show];
         return;
