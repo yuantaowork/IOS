@@ -216,7 +216,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"Error: %@",  error);
+        [SVProgressHUD showErrorWithStatus:@"收款失败"];
         
     }];
 }

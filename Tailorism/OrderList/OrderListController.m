@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     _currentPage = 1;
     _maxPage = 1;
     _statusTpye = @"0";
@@ -477,7 +478,9 @@
     return self;
 }
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tabBarController.tabBar setHidden:NO];
+}
 
 
 @end

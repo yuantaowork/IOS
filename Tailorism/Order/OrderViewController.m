@@ -83,7 +83,7 @@
             
             if ([_pushStr isEqualToString:@"1"]||[_pushStr isEqualToString:@"3"])
             {
-                _nameTextField.text = [_memberDataDic objectForKey:@"name"];
+                _nameTextField.text = [self Nallstring:[_memberDataDic objectForKey:@"name"]];
             }
             break;
         case 1:
@@ -91,7 +91,7 @@
              _phoneNumField = (LYUITextField *)[cell viewWithTag:1211];
             if ([_pushStr isEqualToString:@"1"]||[_pushStr isEqualToString:@"3"])
             {
-                 _phoneNumField.text = [_memberDataDic objectForKey:@"phone_number"];
+                 _phoneNumField.text = [self Nallstring:[_memberDataDic objectForKey:@"phone_number"]];
                 _phoneNumField.enabled = NO;
             }
             break;

@@ -20,10 +20,13 @@
 
 @implementation MeasuringBodyController
 
+- (void)viewWillAppear:(BOOL)animated {    
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tabBarController.tabBar setHidden:NO];
     [self getHttpMeberList];
 }
 
