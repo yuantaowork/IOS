@@ -276,8 +276,16 @@
             
         }else if ([btn.titleLabel.text isEqualToString:@"量体完成"]) {
             
-            [self getHttpMeasureProcess:@{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"measure_id":[[_allDataArray objectAtIndex:btn.tag] valueForKey:@"id"],@"status":@"COMPLETED"}];
+            //  修改后的请求，使用时须注释下面的请求部分
+//            [self getHttpMeasureProcess:@{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],
+//                                          @"measure_id":[[_allDataArray objectAtIndex:btn.tag] valueForKey:@"id"],
+//                                          @"status":@"COMPLETED",
+//                                          @"phone":[[_allDataArray objectAtIndex:btn.tag] valueForKey:@"phone"]
+//                                          }];
             
+            [self getHttpMeasureProcess:@{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],
+                                          @"measure_id":[[_allDataArray objectAtIndex:btn.tag] valueForKey:@"id"],
+                                          @"status":@"COMPLETED"}];
         }
         
 

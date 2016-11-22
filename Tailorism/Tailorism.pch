@@ -58,19 +58,19 @@
 #define LScreenHeight [UIScreen mainScreen].bounds.size.height
 
 
-//#define HTTPUrl @"http://test.api.shliangyi.net/"
-//#define imageHTTPUrl @"http://test.image.shliangyi.net/"
+#define HTTPUrl @"http://test.api.shliangyi.net/"
+#define imageHTTPUrl @"http://test.image.shliangyi.net/"
 
-#define imageHTTPUrl @"http://image.shliangyi.net/"
-#define HTTPUrl @"http://api.shliangyi.net/"
-
-
+//#define imageHTTPUrl @"http://image.shliangyi.net/"
+//#define HTTPUrl @"http://api.shliangyi.net/"
 
 
-#define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录  ✅
-#define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表  ✅
+
+
+#define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录  ✅✅
+#define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表  ✅✅
 #define OrdersAdd [NSString stringWithFormat:@"%@orders/add",HTTPUrl]///添加订单（下单）    ✅
-#define memberAdd [NSString stringWithFormat:@"%@member/add",HTTPUrl]///添加客户    ✅
+#define memberAdd [NSString stringWithFormat:@"%@member/add",HTTPUrl]///添加客户    ✅✅
 #define appUpload [NSString stringWithFormat:@"%@upload/add",HTTPUrl]///图片上传    ✅
 #define fabricList [NSString stringWithFormat:@"%@fabric/list",HTTPUrl]///同步面料  ✅
 #define memberUpdateUrl [NSString stringWithFormat:@"%@member/update",HTTPUrl]///客户修改更新 ✅

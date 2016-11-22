@@ -48,9 +48,26 @@
     
 }
 
+- (void)test {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *para = @{@"id":@10,
+                           @"token":@"EYbO-jaat2nl_YzX1rqEVB45Hv0oWg0PCeKv_xW29fg3tNaGe08lkz11YAA5KIyoCu94sFdmZJeRtXA8HKtE6RyW9EckrIKbHDZxUuZ_phKbE3yu-g0AFvj",
+                           @"page":@2
+                           };
+    [manager POST:@"http://localhost/HYBBS1/Orders/List" parameters:para progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"*****success*************************************%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"*****fail*************************************%@",error);
+    }];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     
 
     [UMessage startWithAppkey:@"57874d6667e58eec8d000658" launchOptions:launchOptions];
@@ -147,7 +164,7 @@
     
     };
     
-    
+//    [self test];
     
     return YES;
 }
