@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -17,7 +21,6 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" tag="99911" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add5.png" translatesAutoresizingMaskIntoConstraints="NO" id="OEY-S9-R7Q" customClass="LYUIImageView">
                         <rect key="frame" x="250" y="125" width="100" height="100"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="71Z-sW-t3W"/>
                             <constraint firstAttribute="width" constant="100" id="xVj-IB-Shm"/>
@@ -25,7 +28,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" tag="99910" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zsa-uX-g8r" customClass="LYUIImageView">
                         <rect key="frame" x="140" y="125" width="100" height="100"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="vHj-Hm-tgT"/>
                             <constraint firstAttribute="height" constant="100" id="zls-XC-73J"/>
@@ -33,21 +35,18 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" tag="99912" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qw2-He-DAd" customClass="LYUIImageView">
                         <rect key="frame" x="360" y="125" width="100" height="100"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Amx-sd-g0V"/>
                             <constraint firstAttribute="height" constant="100" id="R5e-wE-fH7"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="照片管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp3-JG-U6i">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="照片管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp3-JG-U6i">
                         <rect key="frame" x="13" y="5" width="68" height="21"/>
-                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.33725490200000002" green="0.45098039220000002" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                        <color key="textColor" red="0.21153923869132996" green="0.36719819903373718" blue="0.67571341991424561" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="OEY-S9-R7Q" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0ND-2C-2MV"/>
                     <constraint firstItem="Qw2-He-DAd" firstAttribute="top" secondItem="OEY-S9-R7Q" secondAttribute="top" id="7GH-mK-0Mz"/>
@@ -59,7 +58,6 @@
                     <constraint firstItem="OEY-S9-R7Q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ntT-hQ-1QS"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="329.5" y="534"/>
         </tableViewCell>
     </objects>

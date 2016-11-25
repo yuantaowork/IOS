@@ -124,6 +124,7 @@
 		79F5D9D81CF18219007B6737 /* MemberDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F5D9D71CF18219007B6737 /* MemberDetailsController.m */; };
 		79F5D9DD1CF18869007B6737 /* OrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F5D9DC1CF18869007B6737 /* OrderListController.m */; };
 		A1F820A91DD36FAC00F5EBF5 /* AppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F820A81DD36FAC00F5EBF5 /* AppTools.m */; };
+		AEA5DD501DE6FCC000A47416 /* WuliuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA5DD4F1DE6FCC000A47416 /* WuliuViewController.m */; };
 		E82D10AA1D3BD89E00FBD885 /* adminBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D10A81D3BD89E00FBD885 /* adminBodyTableViewCell.m */; };
 		E82D10AB1D3BD89E00FBD885 /* adminBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82D10A91D3BD89E00FBD885 /* adminBodyTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -329,6 +330,8 @@
 		79F5D9DC1CF18869007B6737 /* OrderListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListController.m; sourceTree = "<group>"; };
 		A1F820A71DD36FAC00F5EBF5 /* AppTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTools.h; sourceTree = "<group>"; };
 		A1F820A81DD36FAC00F5EBF5 /* AppTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTools.m; sourceTree = "<group>"; };
+		AEA5DD4E1DE6FCC000A47416 /* WuliuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuliuViewController.h; sourceTree = "<group>"; };
+		AEA5DD4F1DE6FCC000A47416 /* WuliuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuliuViewController.m; sourceTree = "<group>"; };
 		E82D10A71D3BD89E00FBD885 /* adminBodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adminBodyTableViewCell.h; sourceTree = "<group>"; };
 		E82D10A81D3BD89E00FBD885 /* adminBodyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adminBodyTableViewCell.m; sourceTree = "<group>"; };
 		E82D10A91D3BD89E00FBD885 /* adminBodyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = adminBodyTableViewCell.xib; sourceTree = "<group>"; };
@@ -764,6 +767,8 @@
 				79F5D9DC1CF18869007B6737 /* OrderListController.m */,
 				79BF0AE81CF2D5B800D02A04 /* OrderDetailsController.h */,
 				79BF0AE91CF2D5B800D02A04 /* OrderDetailsController.m */,
+				AEA5DD4E1DE6FCC000A47416 /* WuliuViewController.h */,
+				AEA5DD4F1DE6FCC000A47416 /* WuliuViewController.m */,
 			);
 			path = OrderList;
 			sourceTree = "<group>";
@@ -1057,6 +1062,7 @@
 				79C247BA1D5C21890036FD7C /* EarningsRecordController.m in Sources */,
 				79C4C8071CF71434006781D1 /* LYUIImageView.m in Sources */,
 				793CECAF1CE3196900B06443 /* OrderButton.m in Sources */,
+				AEA5DD501DE6FCC000A47416 /* WuliuViewController.m in Sources */,
 				798A7AB21D58711C00D00118 /* WithdrawalsController.m in Sources */,
 				79317DBC1CE1FDD9007805F4 /* LYTabBarController.m in Sources */,
 				79D3A0AD1CEC265A00168BB0 /* AlertTabelView.m in Sources */,

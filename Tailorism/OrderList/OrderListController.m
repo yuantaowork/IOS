@@ -420,6 +420,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     OrderDetailsController * view = [[OrderDetailsController alloc]init];
     view.orderDetailsID = [[_listDataArry objectAtIndex:indexPath.section]valueForKey:@"id"];
+    view.statusTpye = self.statusTpye;
     [self.navigationController pushViewController:view animated:YES];
     
 }

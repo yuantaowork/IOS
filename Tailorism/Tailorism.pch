@@ -58,11 +58,11 @@
 #define LScreenHeight [UIScreen mainScreen].bounds.size.height
 
 
-#define HTTPUrl @"http://test.api.shliangyi.net/"
-#define imageHTTPUrl @"http://test.image.shliangyi.net/"
+//#define HTTPUrl @"http://test.api.shliangyi.net/"
+//#define imageHTTPUrl @"http://test.image.shliangyi.net/"
 
-//#define imageHTTPUrl @"http://image.shliangyi.net/"
-//#define HTTPUrl @"http://api.shliangyi.net/"
+#define imageHTTPUrl @"http://image.shliangyi.net/"
+#define HTTPUrl @"http://api.shliangyi.net/"
 
 
 

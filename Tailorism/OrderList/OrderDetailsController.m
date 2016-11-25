@@ -10,6 +10,8 @@
 #import "MemberType.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ScanningViewController.h"
+#import "WuliuViewController.h"
+
 @interface OrderDetailsController ()<MWPhotoBrowserDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *OrderDetailListTabel;
@@ -34,7 +36,9 @@
     [self.tabBarController.tabBar setHidden:YES];
     
 
-    
+    if ([self.statusTpye isEqualToString:@"4"]) {
+        self.moneyGO.title = @"物流查询";
+    }
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmOrderCell1" bundle:nil] forCellReuseIdentifier:@"ConfirmOrderCell1"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmOrderCell2" bundle:nil] forCellReuseIdentifier:@"ConfirmOrderCell2"];
@@ -62,9 +66,18 @@
             _listDataArry =[[responseObject valueForKey:@"data"]valueForKey:@"product_orders"];
             _orderdataDic =[[responseObject valueForKey:@"data"]valueForKey:@"orders"];
             
+            if ([self.statusTpye isEqualToString:@"4"]) {
+                UIPasteboard *paste = [UIPasteboard generalPasteboard];
+                paste.string = [self.orderdataDic objectForKey:@"express_no"];
+            }
+            
+            
             if ([[[responseObject valueForKey:@"data"]valueForKey:@"member"]isKindOfClass:[NSArray class]])
             {
-                 _memberDic  = [[[responseObject valueForKey:@"data"]valueForKey:@"member"] objectAtIndex:0];
+                if ([[[responseObject valueForKey:@"data"]valueForKey:@"member"] count] != 0) {
+                    _memberDic  = [[[responseObject valueForKey:@"data"]valueForKey:@"member"] objectAtIndex:0];
+                }
+                
                 
             }else
             {
@@ -79,13 +92,13 @@
             
             [self.tableView reloadData];
           
-            if ([[_orderdataDic valueForKey:@"pay_status"]isEqualToString:@"0"]) {
-                
+//            if ([[_orderdataDic valueForKey:@"pay_status"]isEqualToString:@"0"]) {
+            
                 self.navigationItem.rightBarButtonItem = _moneyGO;
-            }else {
-                
-                self.navigationItem.rightBarButtonItem = nil;
-            }
+//            }else {
+//                
+//                self.navigationItem.rightBarButtonItem = nil;
+//            }
             
         }if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]])
         {
@@ -110,16 +123,27 @@
 }
 - (IBAction)moneyGO:(id)sender {
     
-    ScanningViewController * sVC = [[ScanningViewController alloc]init];
-    sVC.order_ID = [_orderdataDic valueForKey:@"id"];
-    sVC.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:sVC animated:YES];
+    if ([self.statusTpye isEqualToString:@"4"]) {
+        
+        WuliuViewController *wuliuVC = [[WuliuViewController alloc] init];
+        wuliuVC.express_no = [self.orderdataDic objectForKey:@"express_no"];
+        [self.navigationController pushViewController:wuliuVC animated:YES];
+        
+    }
+    else {
+        ScanningViewController * sVC = [[ScanningViewController alloc]init];
+        sVC.order_ID = [_orderdataDic valueForKey:@"id"];
+        sVC.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:sVC animated:YES];
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+    if ([_listDataArry isEqual:@0]) {
+        return 3;
+    }
     return 3+_listDataArry.count;
 }
 

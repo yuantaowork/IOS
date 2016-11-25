@@ -11,4 +11,7 @@
 @interface OrderDetailsController : UITableViewController
 @property (strong,nonatomic)NSString * orderDetailsID;
 @property (strong,nonatomic)NSDictionary * photoNameAarry;;
+
+@property (copy , nonatomic)NSString *statusTpye;
+
 @end
