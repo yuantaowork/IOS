@@ -15,4 +15,7 @@
 @property (nonatomic, strong) NSDictionary   *memberDic;
 @property (nonatomic, strong) NSString       *pushID;
 @property (strong,nonatomic )NSDictionary     *imagedic;
+
+@property (nonatomic , copy) NSString *showMessage;
+
 @end

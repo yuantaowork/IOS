@@ -117,11 +117,7 @@
         
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        
-        
-        NSLog(@"JSON: %@", responseObject);
-        
+    
 //        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
 //        
 //        NSDictionary *content = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//转换数据格式
@@ -133,17 +129,9 @@
             [SVProgressHUD showSuccessWithStatus:@"指派成功"];
             [self.navigationController popViewControllerAnimated:YES];
             
-            
-            
-        }else
-        {
-            
         }
         
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSLog(@"Error: %@",  error);
         
     }];
 }

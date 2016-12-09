@@ -21,6 +21,11 @@
 
 @property BOOL dazheBOOL;
 @property BOOL fapiaoBOOL;
+
+@property (nonatomic , copy)NSArray *myDefaultArray;
+@property (nonatomic , copy)NSArray *myFieldsArray;
+@property (nonatomic , copy)NSString *showMessage;
+
 @end
 
 @implementation OrderViewController
@@ -33,6 +38,34 @@
     
     UITapGestureRecognizer *viewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.view addGestureRecognizer:viewTap];
+    
+    self.myDefaultArray = @[@"身高",
+                            @"体重",@"领围",
+                            @"胸围-量衣尺寸",
+                            @"腰围-量衣尺寸",
+                            @"下摆-量衣尺寸",
+                            @"袖肥-量衣尺寸",
+                            @"左袖口-量衣尺寸",
+                            @"右袖口-量衣尺寸",
+                            @"肩宽",@"左袖长",
+                            @"后衣长",@"前胸宽",
+                            @"后背宽"];
+    
+    self.myFieldsArray = @[@"height",
+                           @"weight",@"collar_opening",
+                           @"chest_width",
+                           @"middle_waisted",
+                           @"swing_around",
+                           @"arm_width",
+                           @"left_wrist_width",
+                           @"right_wrist_width",
+                           @"should_width",@"left_sleeve",
+                           @"back_length",@"chest",
+                           @"back"];
+    
+    self.showMessage = @"加载页面";
+    
+    
     
 //    if (![_pushStr isEqualToString:@"1"]&&![_pushStr isEqualToString:@"3"])
 //    {
@@ -162,20 +195,23 @@
 - (IBAction)NextButton:(UIButton *)sender {
  
     
-    if ([_nameTextField.text length]==0||[_phoneNumField.text length]==0||[_addressTextField.text length]==0) {
+    if ([_nameTextField.text length] == 0 || [_phoneNumField.text length] == 0 || [_addressTextField.text length] == 0)  {
         
         [SVProgressHUD showErrorWithStatus:@"有必填项未填写!"];
         return;
     }
 
-
-    
-    if (![self isValidateMobile:_phoneNumField.text])
-    {
+    if (![self isValidateMobile:_phoneNumField.text]) {
         [SVProgressHUD showErrorWithStatus:@"手机号格式错误"];
         return;
     }
 
+    if (![self.pushStr isEqualToString:@"2"]) {
+        //    `如果有量体参数没有设置，则返回 false ，跳转到修改量体数据界面
+        if (![self checkMessage]) {
+            self.pushStr = @"1";
+        }
+    }
     
       NSDictionary * dic = @{@"name":_nameTextField.text,@"phone_number":_phoneNumField.text,@"consignee_address":_addressTextField.text};
       MemberModel *member = [[MemberModel alloc]init];
@@ -217,6 +253,7 @@
         order.memberDic = _memberDataDic;
         order.imagedic = _imagedic;
         order.title = @"录入会员数据";
+        order.showMessage = self.showMessage;
         [self.navigationController pushViewController:order animated:YES];
         
         
@@ -396,6 +433,16 @@
     [self.view endEditing:YES];
 }
 
-
+- (BOOL)checkMessage {
+    for(NSInteger i = 0 ;  i < self.myFieldsArray.count ;  i++) {
+        NSString *key = [self.myFieldsArray objectAtIndex:i];
+//        `没有设置该量体参数
+        if (![[AppTools isNallString:[self.memberDataDic objectForKey:key]] length]) {
+            self.showMessage = [NSString stringWithFormat:@"请输入%@",[self.myDefaultArray objectAtIndex:i]];
+            return false;
+        }
+    }
+    return true;
+}
 
 @end

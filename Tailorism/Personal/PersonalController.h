@@ -12,6 +12,6 @@ typedef void (^HTTPSuccess)(BOOL httpSuccess);
 
 @interface PersonalController : UITableViewController
 
-
--(void)getHttpMeberList:(NSString *)pagestr success:(void(^)(BOOL Success))httpSuccess;
+- (void)getHttpMeberList:(NSString *)pagestr AndPageSize:(NSString *)pageSize success:(void(^)(BOOL Success))httpSuccess;
+//-(void)getHttpMeberList:(NSString *)pagestr success:(void(^)(BOOL Success))httpSuccess;
 @end

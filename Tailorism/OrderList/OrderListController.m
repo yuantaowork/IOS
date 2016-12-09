@@ -29,6 +29,10 @@
 
 @implementation OrderListController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -477,10 +481,6 @@
         self = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderListController"];
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.tabBarController.tabBar setHidden:NO];
 }
 
 

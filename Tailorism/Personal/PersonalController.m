@@ -19,7 +19,6 @@
 @property NSInteger maxPage;
 @property BOOL NoNetwork;
 
-
 @end
 
 @implementation PersonalController
@@ -33,7 +32,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     _dataDic = [[NSMutableDictionary alloc]init];
-
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -268,11 +267,7 @@
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"主人不要走！" delegate:self cancelButtonTitle:@"转身留下" otherButtonTitles:@"狠心离开", nil];
                 [alert show];
-                
-                
-                
             }
-               
                 break;
                 
             default:
@@ -306,115 +301,59 @@
     
     return normalizedImage;
     
-    
 }
 
 static float progress = 0.0f;
 
+- (void)getHttpMeberList:(NSString *)pagestr AndPageSize:(NSString *)pageSize success:(void (^)(BOOL))httpSuccess {
 
-
--(void)getHttpMeberList:(NSString *)pagestr success:(void(^)(BOOL Success))httpSuccess
-{
-    
     [[ UIApplication sharedApplication] setIdleTimerDisabled:YES];
     NSDictionary * dic = nil;
-    if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"Roles"]isEqualToString:@"Yes"])
-    {
-        dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":@"20",@"page":pagestr };
-        
-    }else
-    {
-        dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":@"20",@"page":pagestr,@"uid":[[NSUserDefaults standardUserDefaults] valueForKey:@"adminID"]};
-        
+    if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"Roles"]isEqualToString:@"Yes"]) {
+        dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":pageSize,@"page":pagestr };
+    }
+    else {
+        dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":pageSize,@"page":pagestr,@"uid":[[NSUserDefaults standardUserDefaults] valueForKey:@"adminID"]};
     }
     
-  
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    
-    [manager POST:MerberList parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:MerberList parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        
-        NSLog(@"%@______",uploadProgress);
-        
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        
-        
-        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]])
-        {
-            
-            
-            
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
             if ([[[responseObject objectForKey:@"data"]valueForKey:@"data"]count]==0) {
-                
-                
                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
-                
                 [self getHttpFabricList];
                 return ;
             }
-            
             NSMutableArray * dataarry = [[NSMutableArray alloc]init];
-            for (int i =0; i<[[[responseObject objectForKey:@"data"]objectForKey:@"data"]count]; i++)
-            {
-                
-                
+            for (int i =0; i<[[[responseObject objectForKey:@"data"]objectForKey:@"data"]count]; i++) {
                 NSDictionary * dic = [[[responseObject objectForKey:@"data"]objectForKey:@"data"]objectAtIndex:i];
-                
-                if (![[dic objectForKey:@"phone_number"]isEqual:[NSNull null]])
-                {
-                    if (![[dic objectForKey:@"name"]isEqual:[NSNull null]]&&[[dic objectForKey:@"name"]length]!=0)
-                    {
-
+                if (![[dic objectForKey:@"phone_number"]isEqual:[NSNull null]]) {
+                    if (![[dic objectForKey:@"name"]isEqual:[NSNull null]]&&[[dic objectForKey:@"name"]length]!=0) {
                         [dataarry addObject:@{@"name":[dic objectForKey:@"name"],@"phone_number":[dic objectForKey:@"phone_number"],@"consignee_address":[dic objectForKey:@"consignee_address"]}];
-                    }else
-                    {
+                    }
+                    else {
                         [dataarry addObject:@{@"name":@"暂无姓名",@"phone_number":[dic objectForKey:@"phone_number"],@"consignee_address":[dic objectForKey:@"consignee_address"]}];
                     }
-                    
-                    
                 }
-                
             }
             
             NSDictionary* memberImgdic =[[responseObject objectForKey:@"data"]objectForKey:@"memberImg"];
             NSMutableArray * muatarry = [[NSMutableArray alloc]init];
             
             for (int i =0; i<[[memberImgdic allKeys]count]; i++) {
-                
                 for (int j=0; j< [[memberImgdic valueForKey:[[memberImgdic allKeys] objectAtIndex:i]]count]; j++) {
-                    
-                    
-                    
                     [muatarry addObject: [[memberImgdic valueForKey:[[memberImgdic allKeys] objectAtIndex:i]]objectAtIndex:j]];
-                    
                 }
-                
-                
             }
             
-            NSLog(@"图片名称-----%@",muatarry);
-            
-            
             if ([LYFmdbTool insertMember2:[[responseObject objectForKey:@"data"]objectForKey:@"data"]]) {
-                
-                
-                if ([LYFmdbTool insertMemberName:dataarry])
-                {
-                    if (muatarry.count !=0)
-                    {
-                        if ([LYFmdbTool insertImageName2 :muatarry del:NO])
-                        {
-                            
-                            
+                if ([LYFmdbTool insertMemberName:dataarry]) {
+                    if (muatarry.count !=0) {
+                        if ([LYFmdbTool insertImageName2 :muatarry del:NO]) {
                         }
-                        
                     }
-
                 }
                 
                 _currentPage =[[[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"page"]intValue];
@@ -430,164 +369,88 @@ static float progress = 0.0f;
                     
                     
                     if (_currentPage!=_maxPage) {
-                        
-                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage+1]success:^(BOOL Success) {
-                            
-                            
-                        }];
-                    }else
-                    {
+                        _currentPage ++;
+                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage] AndPageSize:@"100" success:^(BOOL Success) {}];
+//                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage+1]success:^(BOOL Success) {}];
+                    }
+                    else {
                         [SVProgressHUD showSuccessWithStatus:@"全部数据更新成功"];
                         [self getHttpFabricList];
                         _NoNetwork = NO;
                         
-                    
                         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstStart"];
                         [[NSUserDefaults standardUserDefaults]synchronize];
-         
-                       [[NSNotificationCenter defaultCenter]postNotificationName:@"MeberList" object:nil];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"MeberList" object:nil];
                         
                     }
-                    
                 });
-                
-            }else
-            {
-                
             }
-            
-            
-            
-            
-            NSLog(@"%@--姓名数据",dataarry);
-            
-            
-        
-            
-        }else
-        {
-            
+            else {
+            }
         }
-        
-     
+        else {
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 
-        NSLog(@"Error: %@",  [error.userInfo valueForKey:@"NSLocalizedDescription"]);
-        if ([[error.userInfo valueForKey:@"NSLocalizedDescription"]isEqualToString:@"似乎已断开与互联网的连接。"])
-        {
-            
+        if ([[error.userInfo valueForKey:@"NSLocalizedDescription"]isEqualToString:@"似乎已断开与互联网的连接。"]) {
             _NoNetwork = YES;
             [SVProgressHUD showErrorWithStatus:@"似乎已断开与互联网的连接,请点击同步按钮继续更新!"];
-        }else
-        {
+        }
+        else {
             [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
         }
-
     }];
-    
-    
       [[ UIApplication sharedApplication] setIdleTimerDisabled:NO];
-    
 }
 
 
--(void)getHttpFabricList
-{
+- (void)getHttpFabricList {
     [SVProgressHUD show];
     NSDictionary * dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":@"500"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    
     [manager POST:fabricList parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        
-        
-        
-        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]])
-        {
-            
-            
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
             if ([LYFmdbTool fabricListdb:[[responseObject objectForKey:@"data"]objectForKey:@"data"]del:YES]) {
-                
                 [SVProgressHUD showSuccessWithStatus:@"同步面料信息成功!"];
             }
-            
-            
-            
-        }if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]])
-        {
+        }
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]]) {
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Token"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             AppDelegate * appdelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [appdelegate getrootViewController];
-            
-            
-            
-        }else
-        {
-            
         }
-        
-        
+        else{
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSLog(@"Error: %@",  error);
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
     }];
-    
     [self getHttpUserList];
 }
 
 
--(void)getHttpUserList {
-    
-    
-    
+- (void)getHttpUserList {
     [SVProgressHUD show];
     NSDictionary * dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"]};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    
     [manager POST:UserList parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        
-        
-        
-        
-        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]])
-        {
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
             [LYFmdbTool dropDB:@"UserList"];
-            
             if ([LYFmdbTool userList:[[responseObject objectForKey:@"data"]objectForKey:@"data"]]) {
-                
                 [SVProgressHUD showSuccessWithStatus:@"同步系统配置信息成功!"];
             }
-            
-            
-            
-        }if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]])
-        {
+        }
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:-1]]) {
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"Token"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             AppDelegate * appdelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [appdelegate getrootViewController];
             
-            
-            
-        }else
-        {
-            
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSLog(@"Error: %@",  error);
-        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
     }];
 }
-
-
 
 -(instancetype)init
 {

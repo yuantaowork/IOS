@@ -26,16 +26,14 @@
 
 @implementation OrderDetailsController
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tabBarController.tabBar setHidden:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单详情";
-
- 
-    [self.tabBarController.tabBar setHidden:YES];
     
-
     if ([self.statusTpye isEqualToString:@"4"]) {
         self.moneyGO.title = @"物流查询";
     }

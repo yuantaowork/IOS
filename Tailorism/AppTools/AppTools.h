@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^Success)(id result);
+typedef void(^Fail)(id result);
+
 @interface AppTools : NSObject
+
++ (void)postDataWithHttp:(NSString *)url WithPara:(NSDictionary *)para andSuccessBlock:(Success)success andErrorBlock:(Fail)fail;
+
++ (NSString *)isNallString:(id)str;
 
 @end

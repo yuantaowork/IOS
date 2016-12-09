@@ -424,10 +424,8 @@ NSString *const kCellIdentifier = @"MeberListcellID";
             
 
             PersonalController * Controller = [[PersonalController alloc]init];
-            [Controller getHttpMeberList:@"0"success:^(BOOL Success) {
-                
-                
-            }];
+            [Controller getHttpMeberList:@"1" AndPageSize:@"20" success:^(BOOL Success) {}];
+//            [Controller getHttpMeberList:@"0"success:^(BOOL Success) {}];
 
         }];
 

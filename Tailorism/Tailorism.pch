@@ -23,6 +23,7 @@
 #import "Singleton.h"
 #define SuperColor [UIColor colorWithHex:@"5673b7"]
 
+#import "AppTools.h"
 
 
 #if DEBUG
@@ -66,6 +67,7 @@
 
 
 
+#define ordersGetRegion @"m.api.shliangyi.net/orders/getRegion"  //  地域请求
 
 #define LoginUrl  [NSString stringWithFormat:@"%@user/login",HTTPUrl]///登录  ✅✅
 #define MerberList [NSString stringWithFormat:@"%@member/list",HTTPUrl]///客户列表  ✅✅

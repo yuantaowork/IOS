@@ -86,7 +86,7 @@
              [[NSUserDefaults standardUserDefaults]synchronize];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"] valueForKey:@"name"] forKey:@"adminname"];
             [[NSUserDefaults standardUserDefaults]synchronize];
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"] valueForKey:@"id"] forKey:@"adminID"];
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"] objectForKey:@"id"] forKey:@"adminID"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             
      
@@ -147,8 +147,9 @@
 ////        NSLog(@"%@",[error.userInfo valueForKey:@"NSDebugDescription"]);
 //        NSLog(@"%@",(error.userInfo[NSUnderlyingErrorKey]));
         
-        NSString * str  = [NSString stringWithFormat:@"%ld",(long)error.code];
-        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"系统错误,错误码:%@",str]];
+//        NSString * str  = [NSString stringWithFormat:@"%ld",(long)error.code];
+//        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"系统错误,错误码:%@",str]];
+        [SVProgressHUD showErrorWithStatus:@"系统错误"];
         
 
     }];

@@ -136,30 +136,16 @@
     CTCallCenter *callCenter = [[CTCallCenter alloc] init];
   
     callCenter.callEventHandler=^(CTCall* call){
-
-        
-     
-        if (call.callState == CTCallStateDialing){
-            
+        if (call.callState == CTCallStateDialing) {
             NSLog(@"Call Dialing");
-            
         }
         
-        if (call.callState == CTCallStateConnected){
-            
+        if (call.callState == CTCallStateConnected) {
             NSLog(@"Call Connected");
-            
-            
 //            [self performSelectorOnMainThread:@selector(closeTalk) withObject:nil waitUntilDone:YES];
-            
         }
-        
         if (call.callState == CTCallStateDisconnected){
-            
-
-            
             NSLog(@"Call Disconnected");
-        
         }
     
     };
@@ -169,33 +155,24 @@
     return YES;
 }
 
--(void)getrootViewController
-{
+- (void)getrootViewController {
 
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstStart"]){
         
         NSLog(@"第一次启动");
-        
-        
-        
-    }else{
+    }
+    else {
         NSLog(@"不是第一次启动");
-        
+    }
 
-      }
-
-        if ([[NSUserDefaults standardUserDefaults]valueForKey:@"Token"]!=nil)
-        {
-            
-            UIStoryboard * storeyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            self.window.rootViewController =[storeyboard instantiateInitialViewController];
-
-        }else
-        {
-            LoginController * loginView = [[LoginController alloc]init];
-
-            self.window.rootViewController = loginView;
-        }
+    if ([[NSUserDefaults standardUserDefaults]valueForKey:@"Token"]!=nil) {
+        UIStoryboard * storeyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.window.rootViewController =[storeyboard instantiateInitialViewController];
+    }
+    else {
+        LoginController * loginView = [[LoginController alloc]init];
+        self.window.rootViewController = loginView;
+    }
 
 }
 
@@ -264,48 +241,29 @@
 }
 
 
--(void)getHttpMeberList
-{
-    
+- (void)getHttpMeberList {
     NSDictionary * dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"pageSize":@"1"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    
-    [manager POST:MerberList parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+
+    [manager POST:MerberList parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        
-        
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        
-        
-        
-        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]])
-        {
-            
-            
+        if ([[responseObject objectForKey:@"status"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            NSArray *memberArray = [responseObject objectForKey:@"data"];
+            if (![memberArray count]) {
+                NSLog(@"*********************没有获取到用户************");
+                return ;
+            }
             if ([LYFmdbTool insertMember:[[responseObject objectForKey:@"data"]objectForKey:@"data"]del:NO appdelegate:YES] ) {
-                
 //                [SVProgressHUD showSuccessWithStatus:@"同步通讯录成功!"];
             }
-            
             NSMutableArray * dataarry = [[NSMutableArray alloc]init];
-            for (int i =0; i<[[[responseObject objectForKey:@"data"]objectForKey:@"data"]count]; i++)
-            {
-                
-                
+            for (int i =0; i<[[[responseObject objectForKey:@"data"]objectForKey:@"data"]count]; i++) {
                 NSDictionary * dic = [[[responseObject objectForKey:@"data"]objectForKey:@"data"]objectAtIndex:i];
-                
-                if (![[dic objectForKey:@"phone_number"]isEqual:[NSNull null]])
-                {
-                    if (![[dic objectForKey:@"name"]isEqual:[NSNull null]])
-                    {
+                if (![[dic objectForKey:@"phone_number"]isEqual:[NSNull null]]) {
+                    if (![[dic objectForKey:@"name"]isEqual:[NSNull null]]) {
                         [dataarry addObject:@{@"name":[dic objectForKey:@"name"],@"phone_number":[dic objectForKey:@"phone_number"],@"consignee_address":[dic objectForKey:@"consignee_address"]}];
                     }
-                    
                 }
-                
             }
 //            if ([LYFmdbTool insertMemberName:dataarry])
 //            {
@@ -313,22 +271,11 @@
 //            }
             
 //            NSLog(@"%@--姓名数据",dataarry);
-            
-            
-        }else
-        {
-            
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
 //        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
     }];
 }
-
-
-
-
 
 @end

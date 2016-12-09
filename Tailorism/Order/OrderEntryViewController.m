@@ -60,7 +60,7 @@ static BOOL selectField;///选中的TextField 判断
     // Do any additional setup after loading the view.
     [self.tabBarController.tabBar setHidden:YES];
     
-    [SVProgressHUD showWithStatus:@"加载页面"];
+    [SVProgressHUD showWithStatus:self.showMessage];
     [self performSelector:@selector(viewinit) withObject:nil afterDelay:1.0f];
 
 }
@@ -240,21 +240,24 @@ static BOOL selectField;///选中的TextField 判断
 }
 
 - (IBAction)doneButton:(UIButton *)sender {
-    
-//    NSDictionary * oderNameArry = [[NSUserDefaults standardUserDefaults]valueForKey:@"OderName"];
-
+    [self selectbutton:_selectedButtonTag];
+    if (![self checkMessage]) {
+        [SVProgressHUD showErrorWithStatus:@"量衣或成衣尺寸未填写"];
+        return;
+    }
+    /*
+    NSInteger i = [self checkAllMessage];
+    if (999 != i) {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",[_defaultArry objectAtIndex:i]]];
+        return;
+    }
+    */
     
     if (_selectedButtonTag==70019) {
         
         [self selectbutton:70000];
         
     }
-    [self selectbutton:_selectedButtonTag+1];
-    
-    NSLog(@"%@---量体数据",_initialDataArry);
-    NSLog(@"%@---成衣数据",_finishedArry);
-    
-    
     
     NSString * body_shapestr= nil;
     if ([[_initialDataArry objectAtIndex:14]isEqualToString:@"一般"]) {
@@ -1049,13 +1052,11 @@ static BOOL selectField;///选中的TextField 判断
     
 }
 ///参数按钮方法
--(IBAction)clothingParameters:(UIButton *)btn
-{
-
-    btn.selected = YES;
+- (IBAction)clothingParameters:(UIButton *)btn {
+    if ([[_initialDataArry objectAtIndex:_selectedButtonTag - 70000] length]) {
+        btn.selected = YES;
+    }
     [self selectbutton:btn.tag];
-
-    
 }
 
 ///封装改变参数按钮状态方法 select:(BOOL)是否选择
@@ -1070,8 +1071,6 @@ static BOOL selectField;///选中的TextField 判断
 - (IBAction)nextBtn:(id)sender {
     
     
-    
-    
     if (_selectedButtonTag==70019) {
         
         [self selectbutton:70000];
@@ -1083,10 +1082,15 @@ static BOOL selectField;///选中的TextField 判断
 
 }
 
-#warning  这里可以修改选中按钮的一些参数
 ///-按钮参数方法
--(void)selectbutton:(NSInteger)buttonTag
-{
+- (void)selectbutton:(NSInteger)buttonTag {
+    
+    
+    if (![self checkMessage]) {
+        [SVProgressHUD showErrorWithStatus:@"量衣或成衣尺寸未填写"];
+        return;
+    }
+    
     [_initialDataArry replaceObjectAtIndex:_selectedButtonTag-70000 withObject:_defaultTextField.text];
     [_finishedArry replaceObjectAtIndex:_selectedButtonTag-70000 withObject:_additionalTextField.text];
     selectField = YES;
@@ -1099,7 +1103,14 @@ static BOOL selectField;///选中的TextField 判断
     }
     
     _selectedButtonTag=buttonTag;
-    [self clothingParametersBtnType:_selectedButtonTag select:YES];
+//    if (buttonTag==70003||buttonTag==70004||buttonTag==70005||buttonTag==70006||buttonTag==70007||buttonTag==70008||buttonTag==70010||buttonTag==70011) {
+//        if ([[_finishedArry objectAtIndex:_selectedButtonTag-70000] length]==0) {
+//            [self clothingParametersBtnType:_selectedButtonTag select:NO];
+//        }
+//    }
+//    else {
+        [self clothingParametersBtnType:_selectedButtonTag select:YES];
+//    }
     
     [self titleText:_selectedButtonTag];
     [self additionalTextfieldHidden:_selectedButtonTag];
@@ -1467,6 +1478,47 @@ static BOOL selectField;///选中的TextField 判断
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+
+
+//` 检验参数是否填写完整 （录入 胸围、腰围、下摆、袖肥、左袖口、右袖口、袖长、衣长时）
+- (BOOL)checkMessage {
+    if (NO == _additionalTextField.hidden) {
+        BOOL defaultTest = [self checkConditionWithMessage:_defaultTextField.text];
+        BOOL additionalTest = [self checkConditionWithMessage:_additionalTextField.text];
+        
+        return !(defaultTest ^ additionalTest);
+    }
+//    else {
+//        BOOL defaultTest = [self checkConditionWithTextField:_defaultTextField];
+//        return defaultTest;
+//    }
+    return true;
+}
+
+- (BOOL)checkConditionWithMessage:(NSString *)message {
+    BOOL flag;
+    BOOL isEmpty = false;
+    BOOL isZero = false;
+    isEmpty = ![message isEqualToString:@""];
+    isZero = ![message isEqualToString:@"0"];
+    
+    flag = isEmpty && isZero;
+    
+    return flag;
+}
+
+#warning 需求有变，此处逻辑暂时放弃
+//`需求有变，此处逻辑暂时放弃
+//` 点击完成按钮时， check 所有的量体参数（除去备注和照片） 如果返回值为 999 ，则所有参数填写完整
+- (NSInteger)checkAllMessage {
+    for (NSInteger i = 0 ; i < ([_initialDataArry count] -  2); i++) {
+        NSString *message = [_initialDataArry objectAtIndex:i];
+        if (![self checkConditionWithMessage:message]) {
+            return i;
+        }
+    }
+    return 999;
 }
 
 
