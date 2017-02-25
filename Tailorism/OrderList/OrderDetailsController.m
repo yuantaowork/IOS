@@ -66,7 +66,13 @@
             
             if ([self.statusTpye isEqualToString:@"4"]) {
                 UIPasteboard *paste = [UIPasteboard generalPasteboard];
-                paste.string = [self.orderdataDic objectForKey:@"express_no"];
+                if ([self.orderdataDic objectForKey:@"express_no"]) {
+                    self.moneyGO.enabled = NO;
+                    [SVProgressHUD showInfoWithStatus:@"没有对应的快递单号，请联系相关人员核实"];
+                }
+                else {
+                    paste.string = [self.orderdataDic objectForKey:@"express_no"];
+                }
             }
             
             
@@ -79,7 +85,7 @@
                 
             }else
             {
-                [SVProgressHUD showInfoWithStatus:@"此订单为标准码订单"];
+//                [SVProgressHUD showInfoWithStatus:@"此订单为标准码订单"];
                 _memberDic  = [[[responseObject valueForKey:@"data"]valueForKey:@"member"]valueForKey:[[_listDataArry objectAtIndex:0] valueForKey:@"collar"]];
             }
            

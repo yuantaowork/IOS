@@ -84,6 +84,7 @@
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
     [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_APPKEY];
+//` 选择更新
 //    [[PgyUpdateManager sharedPgyManager] checkUpdate];
 //    `强制更新
     [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethodWithDictionary:)];

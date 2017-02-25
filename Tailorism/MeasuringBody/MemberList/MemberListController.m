@@ -67,13 +67,8 @@ NSString *const kCellIdentifier = @"MeberListcellID";
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
            NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[self.tableView.mj_header.lastUpdatedTime timeIntervalSince1970]];
-        
-
         [self getHttpMeberList:timeSp];
-
-
     }];
-
 
 }
 
@@ -397,6 +392,7 @@ NSString *const kCellIdentifier = @"MeberListcellID";
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tabBarController.tabBar setHidden:NO];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated

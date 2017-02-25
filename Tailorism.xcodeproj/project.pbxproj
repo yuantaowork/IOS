@@ -124,6 +124,8 @@
 		79F5D9D81CF18219007B6737 /* MemberDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F5D9D71CF18219007B6737 /* MemberDetailsController.m */; };
 		79F5D9DD1CF18869007B6737 /* OrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F5D9DC1CF18869007B6737 /* OrderListController.m */; };
 		A1F820A91DD36FAC00F5EBF5 /* AppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F820A81DD36FAC00F5EBF5 /* AppTools.m */; };
+		AE0F49E51E0D28D600962ABC /* 4.7.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F49E31E0D28D500962ABC /* 4.7.png */; };
+		AE0F49E61E0D28D600962ABC /* 5.5.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F49E41E0D28D600962ABC /* 5.5.png */; };
 		AEA5DD501DE6FCC000A47416 /* WuliuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA5DD4F1DE6FCC000A47416 /* WuliuViewController.m */; };
 		AEAC0F691DE820DF005F858C /* YTClothing.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEAC0F681DE820DF005F858C /* YTClothing.xib */; };
 		E82D10AA1D3BD89E00FBD885 /* adminBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D10A81D3BD89E00FBD885 /* adminBodyTableViewCell.m */; };
@@ -331,6 +333,8 @@
 		79F5D9DC1CF18869007B6737 /* OrderListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListController.m; sourceTree = "<group>"; };
 		A1F820A71DD36FAC00F5EBF5 /* AppTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTools.h; sourceTree = "<group>"; };
 		A1F820A81DD36FAC00F5EBF5 /* AppTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTools.m; sourceTree = "<group>"; };
+		AE0F49E31E0D28D500962ABC /* 4.7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.7.png; sourceTree = "<group>"; };
+		AE0F49E41E0D28D600962ABC /* 5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.5.png; sourceTree = "<group>"; };
 		AEA5DD4E1DE6FCC000A47416 /* WuliuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuliuViewController.h; sourceTree = "<group>"; };
 		AEA5DD4F1DE6FCC000A47416 /* WuliuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuliuViewController.m; sourceTree = "<group>"; };
 		AEAC0F681DE820DF005F858C /* YTClothing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTClothing.xib; sourceTree = "<group>"; };
@@ -505,6 +509,8 @@
 		79865C341CF306570025A94D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				AE0F49E31E0D28D500962ABC /* 4.7.png */,
+				AE0F49E41E0D28D600962ABC /* 5.5.png */,
 				79865C371CF308380025A94D /* logintextbg.png */,
 				79865C351CF306570025A94D /* loginbg.png */,
 			);
@@ -877,11 +883,12 @@
 				TargetAttributes = {
 					79CF832B1CDCA0DF00E6CC8C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 32VNW8Q34V;
+						DevelopmentTeam = HLAS4TQZ9L;
 						ProvisioningStyle = Automatic;
 					};
 					79CF83441CDCA0E000E6CC8C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HLAS4TQZ9L;
 						TestTargetID = 79CF832B1CDCA0DF00E6CC8C;
 					};
 					79CF834F1CDCA0E000E6CC8C = {
@@ -939,6 +946,7 @@
 				794482A81D5312B000C75A7F /* scanLine@3x.png in Resources */,
 				79CB3AE61D1A9882004DD1EE /* 44e774f99535d84e0af9adfa253868b4.png.jpeg in Resources */,
 				79C6EF151CDCB473002AFB19 /* huiyuanl@3x.png in Resources */,
+				AE0F49E61E0D28D600962ABC /* 5.5.png in Resources */,
 				794482A71D5312B000C75A7F /* scanLine@2x.png in Resources */,
 				79C6EF141CDCB473002AFB19 /* huiyuanb@3x.png in Resources */,
 				79E7AD0B1CEEDA0E00375909 /* ConfirmOrderCell2.xib in Resources */,
@@ -966,6 +974,7 @@
 				794482A91D5312B000C75A7F /* scanscanBg.png in Resources */,
 				79D3A0B61CEC6CBC00168BB0 /* add4.png in Resources */,
 				793CECAB1CE3185200B06443 /* x.wav in Resources */,
+				AE0F49E51E0D28D600962ABC /* 4.7.png in Resources */,
 				791495E21CF569D600102D76 /* MemberListNameCell.xib in Resources */,
 				79865C381CF308380025A94D /* logintextbg.png in Resources */,
 				791CC2381D3740BB008BB40D /* BodyTableViewCell.xib in Resources */,
@@ -1243,9 +1252,10 @@
 			baseConfigurationReference = 246C77582A8623192667523C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: zhenning.li@tailorism.com (ZUU4NH7AMT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 32VNW8Q34V;
+				DEVELOPMENT_TEAM = HLAS4TQZ9L;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1273,9 +1283,10 @@
 			baseConfigurationReference = 153BE068FBAA0137EEF1EBA4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: zhenning.li@tailorism.com (ZUU4NH7AMT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 32VNW8Q34V;
+				DEVELOPMENT_TEAM = HLAS4TQZ9L;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1304,6 +1315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HLAS4TQZ9L;
 				INFOPLIST_FILE = TailorismTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lizhenning.TailorismTests;
@@ -1316,6 +1328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HLAS4TQZ9L;
 				INFOPLIST_FILE = TailorismTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lizhenning.TailorismTests;

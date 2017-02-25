@@ -354,8 +354,8 @@
 
 -(void)getHttpAddOrder
 {
-    
-    NSLog(@"%@----提交前",_dataDic);
+    NSMutableDictionary *bigDic = [NSMutableDictionary dictionary];
+
     [SVProgressHUD show];
     NSMutableArray * donedataArry = [[NSMutableArray alloc]init];
     
@@ -383,7 +383,6 @@
                                 @"white_collar":clothing.white_collar,//领款白色
                                 @"white_sleeve":clothing.white_sleeve,//袖款白色
                                 };
-        NSLog(@"%@---data",data);
         
         NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
         
@@ -404,10 +403,16 @@
     
     
     
-    NSLog(@"处理后的数据-%@",donedataArry);
     
     NSString *jsonString = [[NSString alloc] initWithData: [self toJSONData:donedataArry]
                                                     encoding:NSUTF8StringEncoding];
+//    [bigDic setObject:jsonString forKey:@"item_details"];
+//    
+//    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:@"Token"];
+//    [bigDic setObject:token forKey:@"token"];
+//    MemberModel * member = [[MemberModel alloc] init];
+//    OrderModel * ordermodel = [[OrderModel alloc] init];
+    
     
     
     
@@ -417,12 +422,8 @@
     NSDictionary * token = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"]};
 //    [memberdic addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults]valueForKey:@"DONEMEMBER"]];
     
-    
-
     MemberModel * member = [[MemberModel alloc]init];
     OrderModel * ordermodel = [[OrderModel alloc]init];
-    
-    
     
     if (![_push_ID isEqualToString:@"1"]) {
         
@@ -436,25 +437,16 @@
     [memberdic addEntriesFromDictionary:@{@"address":member.consignee_address}];
     [memberdic addEntriesFromDictionary:ordermodel.mj_keyValues];
     
-
-    
-    
     NSMutableDictionary * lastDatadic = [[NSMutableDictionary alloc]init];
-    
 
-    
-    if (![_push_ID isEqualToString:@"1"])
-    {
+    if (![_push_ID isEqualToString:@"1"]) {
         for (int i = 0; i<[memberdic allKeys].count; i++) {
-            
-            if ([[memberdic objectForKey:[[memberdic allKeys] objectAtIndex:i]]length]!=0)
-            {
+            if ([[memberdic objectForKey:[[memberdic allKeys] objectAtIndex:i]]length]!=0) {
                 [lastDatadic addEntriesFromDictionary:@{[[memberdic allKeys]objectAtIndex:i]:[memberdic objectForKey:[[memberdic allKeys] objectAtIndex:i]]}];
             }
-            
         }
-    }else
-    {
+    }
+    else {
         [lastDatadic addEntriesFromDictionary:memberdic];
     }
 
@@ -467,9 +459,6 @@
     [dic11111 addEntriesFromDictionary:lastDatadic];
     
     
-    NSLog(@"%@---最终数据",dic11111);
-    
-    
     
     if (![_push_ID isEqualToString:@"1" ])
     {
@@ -478,9 +467,6 @@
 //        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
         [manager POST:OrdersAdd parameters:dic11111 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            
-            NSLog(@"JSON: %@", responseObject);
             
             
             if ([[responseObject objectForKey:@"status"]isKindOfClass:[NSNumber class]])
@@ -516,8 +502,11 @@
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
+            [SVProgressHUD showSuccessWithStatus:@"提交订单成功"];
+            [self performSelector:@selector(getPopViewController) withObject:nil afterDelay:2.f];
             
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
+//            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
+            
         }];
     }else
     {
@@ -569,11 +558,11 @@
     
     
     OrderModel * ordermodel = [[OrderModel alloc]init];
-    if ([ordermodel.pay_type isEqualToString:@"12"]) {
+    //if ([ordermodel.pay_type isEqualToString:@"12"]) {
         
          [self.navigationController popToRootViewControllerAnimated:YES];
         
-    }else {
+    /*}else {
         
         ScanningViewController * sVC = [[ScanningViewController alloc]init];
         sVC.order_ID = _orderIDStr;
@@ -581,7 +570,7 @@
         [self.navigationController pushViewController:sVC animated:YES];
         
     }
-    
+    */
     
 
 }

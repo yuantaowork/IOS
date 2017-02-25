@@ -192,6 +192,7 @@
 {
     
     
+    
     NSDictionary * dic = @{@"token":[[NSUserDefaults standardUserDefaults]valueForKey:@"Token"],@"auth_code":authCodeStr,@"order_id":_order_ID};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];

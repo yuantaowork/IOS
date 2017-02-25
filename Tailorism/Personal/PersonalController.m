@@ -359,6 +359,9 @@ static float progress = 0.0f;
                 _currentPage =[[[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"page"]intValue];
                 _maxPage =[[[[responseObject valueForKey:@"data"] valueForKey:@"pager"]valueForKey:@"pageCount"]intValue];
                 progress =  (float)_currentPage/(float)_maxPage;
+                if (progress > 1.0) {
+                    progress = 1.0;
+                }
                 
                 
                 [SVProgressHUD showProgress:progress status:[NSString stringWithFormat:@"系统配置中,请不要退出或中断网络 进度:%.0f%%",progress*100]];
@@ -368,9 +371,8 @@ static float progress = 0.0f;
                 dispatch_after(popTime1, dispatch_get_main_queue(), ^(void){
                     
                     
-                    if (_currentPage!=_maxPage) {
-                        _currentPage ++;
-                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage] AndPageSize:@"100" success:^(BOOL Success) {}];
+                    if (progress < 1.0) {
+                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage + 1] AndPageSize:@"100" success:^(BOOL Success) {}];
 //                        [self getHttpMeberList:[NSString stringWithFormat:@"%ld",(long)_currentPage+1]success:^(BOOL Success) {}];
                     }
                     else {
